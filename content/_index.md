@@ -4,60 +4,43 @@ description: Docker · Linux · Cloud Native · DevOps
 toc: false
 ---
 
-<p style="text-align: center">Docker · Linux · Cloud Native · DevOps</p>
+<p style="text-align: center; margin-bottom: 2rem;">Docker · Linux · Cloud Native · DevOps</p>
 
-## 📂 分类导航
+<div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
 
-<div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<a href="/docker" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
+  <div class="text-3xl mb-2">🐳</div>
+  <div class="text-lg font-bold mb-1">Docker</div>
+  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">容器化技术</div>
+  <div class="text-xs text-gray-400">📚 2 篇文章</div>
+</a>
 
-<div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+<a href="/linux" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
+  <div class="text-3xl mb-2">🐧</div>
+  <div class="text-lg font-bold mb-1">Linux</div>
+  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">系统运维</div>
+  <div class="text-xs text-gray-400">📚 文章整理中</div>
+</a>
 
-### 🐳 Docker
+<a href="/sql" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
+  <div class="text-3xl mb-2">🗄️</div>
+  <div class="text-lg font-bold mb-1">SQL</div>
+  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">数据库</div>
+  <div class="text-xs text-gray-400">📚 文章整理中</div>
+</a>
 
-容器化技术笔记，从入门到进阶。
+<a href="/stm32" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
+  <div class="text-3xl mb-2">⚡</div>
+  <div class="text-lg font-bold mb-1">STM32</div>
+  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">嵌入式开发</div>
+  <div class="text-xs text-gray-400">📚 文章整理中</div>
+</a>
 
-[进入 →](/docker)
-
-</div>
-
-<div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
-
-### 🐧 Linux
-
-Linux 系统管理、运维技巧。
-
-[进入 →](/linux)
-
-</div>
-
-<div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
-
-### 🗄️ SQL
-
-数据库查询、优化与设计。
-
-[进入 →](/sql)
-
-</div>
-
-<div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
-
-### ⚡ STM32
-
-嵌入式开发笔记。
-
-[进入 →](/stm32)
-
-</div>
-
-<div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
-
-### 🌐 网络协议
-
-BGP、OSPF、IPv6、MPLS 等网络技术。
-
-[进入 →](/networking)
-
-</div>
+<a href="/networking" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
+  <div class="text-3xl mb-2">🌐</div>
+  <div class="text-lg font-bold mb-1">网络协议</div>
+  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">BGP / OSPF / IPv6 / MPLS</div>
+  <div class="text-xs text-gray-400">📚 文章整理中</div>
+</a>
 
 </div>
