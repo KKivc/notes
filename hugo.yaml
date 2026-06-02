@@ -75,10 +75,8 @@ menu:
       parent: tech-categories
       weight: 15
     - name: 🚀 项目展示
-      pageRef: /
       weight: 20
     - name: 📝 最近更新
-      pageRef: /
       weight: 30
 
 markup:
