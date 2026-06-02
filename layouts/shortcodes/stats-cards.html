@@ -9,20 +9,17 @@
     {{- $categoryCount = add $categoryCount 1 -}}
   {{- end -}}
 {{- end -}}
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
-  <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1rem 1.5rem; min-width: 7rem;">
-    <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">📚</div>
-    <div style="font-size: 1.5rem; font-weight: 700;">{{ $articleCount }}</div>
-    <div style="font-size: 0.875rem; color: #6b7280;">文章</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 2rem;">
+  <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.5rem 1.25rem; min-width: 5.5rem;">
+    <div style="font-size: 1.1rem; margin-bottom: 0.1rem;">📚</div>
+    <div style="font-size: 1.1rem; font-weight: 700; line-height: 1.2;">{{ $articleCount }} 篇</div>
   </div>
-  <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1rem 1.5rem; min-width: 7rem;">
-    <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">📂</div>
-    <div style="font-size: 1.5rem; font-weight: 700;">{{ $categoryCount }}</div>
-    <div style="font-size: 0.875rem; color: #6b7280;">分类</div>
+  <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.5rem 1.25rem; min-width: 5.5rem;">
+    <div style="font-size: 1.1rem; margin-bottom: 0.1rem;">📂</div>
+    <div style="font-size: 1.1rem; font-weight: 700; line-height: 1.2;">{{ $categoryCount }} 类</div>
   </div>
-  <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1rem 1.5rem; min-width: 7rem;">
-    <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🕒</div>
-    <div style="font-size: 0.875rem; font-weight: 700; margin-top: 0.25rem;">持续</div>
-    <div style="font-size: 0.875rem; color: #6b7280;">更新</div>
+  <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.5rem 1.25rem; min-width: 5.5rem;">
+    <div style="font-size: 1.1rem; margin-bottom: 0.1rem;">🕒</div>
+    <div style="font-size: 0.85rem; font-weight: 700; line-height: 1.2;">更新中</div>
   </div>
 </div>
