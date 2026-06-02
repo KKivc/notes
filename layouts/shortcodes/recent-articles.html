@@ -1,0 +1,29 @@
+{{- /* Auto-list recent articles */ -}}
+{{- $pages := where $.Site.RegularPages "Kind" "eq" "page" -}}
+{{- $pages = sort $pages "Lastmod" "desc" -}}
+{{- $count := $pages | len -}}
+{{- if gt $count 0 -}}
+  {{- $limit := 5 -}}
+  {{- if lt $count $limit -}}{{- $limit = $count -}}{{- end -}}
+  <ul style="list-style: none; padding: 0; margin: 0;">
+  {{- range first $limit $pages -}}
+    {{- $title := .LinkTitle -}}
+    {{- if not $title -}}
+      {{- $title = .File.ContentBaseName | humanize -}}
+    {{- end -}}
+    {{- $date := .Lastmod -}}
+    {{- if $date.IsZero -}}
+      {{- $date = .Date -}}
+    {{- end -}}
+    {{- if $date.IsZero -}}
+      {{- $date = time.Now -}}
+    {{- end -}}
+    <li style="padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center;">
+      <a href="{{ .RelPermalink }}" style="text-decoration: none; color: inherit; font-weight: 500;">{{ $title }}</a>
+      <span style="font-size: 0.8rem; color: #9ca3af;">{{ $date.Format "2006-01-02" }}</span>
+    </li>
+  {{- end -}}
+  </ul>
+{{- else -}}
+  <p style="color: #9ca3af; text-align: center; padding: 1rem 0;">暂无文章</p>
+{{- end -}}
