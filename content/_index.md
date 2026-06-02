@@ -6,41 +6,10 @@ toc: false
 
 <p style="text-align: center; margin-bottom: 2rem;">Docker · Linux · Cloud Native · DevOps</p>
 
-<div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-
-<a href="/docker" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
-  <div class="text-3xl mb-2">🐳</div>
-  <div class="text-lg font-bold mb-1">Docker</div>
-  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">容器化技术</div>
-  <div class="text-xs text-gray-400">📚 2 篇文章</div>
-</a>
-
-<a href="/linux" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
-  <div class="text-3xl mb-2">🐧</div>
-  <div class="text-lg font-bold mb-1">Linux</div>
-  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">系统运维</div>
-  <div class="text-xs text-gray-400">📚 文章整理中</div>
-</a>
-
-<a href="/sql" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
-  <div class="text-3xl mb-2">🗄️</div>
-  <div class="text-lg font-bold mb-1">SQL</div>
-  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">数据库</div>
-  <div class="text-xs text-gray-400">📚 文章整理中</div>
-</a>
-
-<a href="/stm32" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
-  <div class="text-3xl mb-2">⚡</div>
-  <div class="text-lg font-bold mb-1">STM32</div>
-  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">嵌入式开发</div>
-  <div class="text-xs text-gray-400">📚 文章整理中</div>
-</a>
-
-<a href="/networking" class="block border rounded-xl p-5 hover:shadow-lg transition-shadow no-underline text-inherit">
-  <div class="text-3xl mb-2">🌐</div>
-  <div class="text-lg font-bold mb-1">网络协议</div>
-  <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">BGP / OSPF / IPv6 / MPLS</div>
-  <div class="text-xs text-gray-400">📚 文章整理中</div>
-</a>
-
-</div>
+{{< cards cols="3" >}}
+  {{< card link="/docker" title="🐳 Docker" subtitle="容器化技术" tag="📚 2 篇文章" >}}
+  {{< card link="/linux" title="🐧 Linux" subtitle="系统运维" tag="📚 文章整理中" >}}
+  {{< card link="/sql" title="🗄️ SQL" subtitle="数据库" tag="📚 文章整理中" >}}
+  {{< card link="/stm32" title="⚡ STM32" subtitle="嵌入式开发" tag="📚 文章整理中" >}}
+  {{< card link="/networking" title="🌐 网络协议" subtitle="BGP / OSPF / IPv6 / MPLS" tag="📚 文章整理中" >}}
+{{< /cards >}}
