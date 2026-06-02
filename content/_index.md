@@ -4,7 +4,7 @@ description: Docker · Linux · Cloud Native · DevOps
 toc: false
 ---
 
-欢迎来到 NetHub — Docker · Linux · Cloud Native · DevOps 技术笔记。
+NetHub — Docker · Linux · Cloud Native · DevOps
 
 ## 📂 分类导航
 
