@@ -4,7 +4,7 @@ description: Docker · Linux · Cloud Native · DevOps
 toc: false
 ---
 
-Docker · Linux · Cloud Native · DevOps
+<p style="text-align: center">Docker · Linux · Cloud Native · DevOps</p>
 
 ## 📂 分类导航
 
