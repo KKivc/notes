@@ -45,6 +45,42 @@ menu:
       url: https://github.com/KKivc/notes
       weight: 100
 
+  sidebar:
+    - name: 🏠 首页
+      pageRef: /
+      weight: 1
+    - name: 📚 技术分类
+      weight: 10
+      identifier: tech-categories
+      params:
+        type: group
+    - name: 🐧 Linux
+      pageRef: /linux
+      parent: tech-categories
+      weight: 11
+    - name: 🌐 Network
+      pageRef: /networking
+      parent: tech-categories
+      weight: 12
+    - name: 🐳 Docker
+      pageRef: /docker
+      parent: tech-categories
+      weight: 13
+    - name: 🗄 MySQL
+      pageRef: /sql
+      parent: tech-categories
+      weight: 14
+    - name: ⚡ STM32
+      pageRef: /stm32
+      parent: tech-categories
+      weight: 15
+    - name: 🚀 项目展示
+      pageRef: /
+      weight: 20
+    - name: 📝 最近更新
+      pageRef: /
+      weight: 30
+
 markup:
   goldmark:
     renderer:
