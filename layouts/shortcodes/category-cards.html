@@ -6,7 +6,15 @@
   (dict "link" "/sql" "icon" "🗄️" "title" "MySQL" "desc" "数据库")
   (dict "link" "/stm32" "icon" "⚡" "title" "STM32" "desc" "嵌入式开发")
 -}}
-<div class="hextra-cards hx:mt-4 hx:gap-4 hx:grid not-prose" style="--hextra-cards-grid-cols: 3;">
+<style>
+  @media (min-width: 768px) {
+    .category-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 767px) {
+    .category-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<div class="hextra-cards category-grid hx:mt-4 hx:gap-4 hx:grid not-prose">
 {{- range $categories -}}
   {{- $sectionPage := $.Site.GetPage .link -}}
   {{- $count := 0 -}}
