@@ -1,5 +1,5 @@
 ---
-title: 🌐 网络协议
+title: 🌐 Network
 cascade:
   type: docs
 ---

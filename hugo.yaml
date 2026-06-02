@@ -15,7 +15,8 @@ params:
 
   footer:
     displayCopyright: false
-    displayPoweredBy: true
+    displayPoweredBy: false
+    enableFooterSwitches: false
 
   page:
     width: wide
@@ -25,20 +26,20 @@ menu:
     - name: 首页
       pageRef: /
       weight: 1
-    - name: Docker
-      pageRef: /docker
-      weight: 10
     - name: Linux
       pageRef: /linux
+      weight: 10
+    - name: Network
+      pageRef: /networking
       weight: 20
-    - name: SQL
-      pageRef: /sql
+    - name: Docker
+      pageRef: /docker
       weight: 30
+    - name: MySQL
+      pageRef: /sql
+      weight: 40
     - name: STM32
       pageRef: /stm32
-      weight: 40
-    - name: 网络协议
-      pageRef: /networking
       weight: 50
     - name: GitHub
       url: https://github.com/KKivc/notes

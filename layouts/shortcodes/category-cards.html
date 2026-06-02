@@ -1,10 +1,10 @@
 {{- /* Auto-generated category cards with dynamic article counts */ -}}
 {{- $categories := slice
-  (dict "link" "/docker" "icon" "🐳" "title" "Docker" "desc" "容器化技术")
   (dict "link" "/linux" "icon" "🐧" "title" "Linux" "desc" "系统运维")
-  (dict "link" "/sql" "icon" "🗄️" "title" "SQL" "desc" "数据库")
+  (dict "link" "/networking" "icon" "🌐" "title" "Network" "desc" "BGP / OSPF / IPv6 / MPLS / STP")
+  (dict "link" "/docker" "icon" "🐳" "title" "Docker" "desc" "容器化技术")
+  (dict "link" "/sql" "icon" "🗄️" "title" "MySQL" "desc" "数据库")
   (dict "link" "/stm32" "icon" "⚡" "title" "STM32" "desc" "嵌入式开发")
-  (dict "link" "/networking" "icon" "🌐" "title" "网络协议" "desc" "BGP / OSPF / IPv6 / MPLS")
 -}}
 <div class="hextra-cards hx:mt-4 hx:gap-4 hx:grid not-prose" style="--hextra-cards-grid-cols: 3;">
 {{- range $categories -}}

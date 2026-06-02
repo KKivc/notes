@@ -1,5 +1,5 @@
 ---
-title: 🗄️ SQL
+title: 🗄️ MySQL
 cascade:
   type: docs
 ---
