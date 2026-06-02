@@ -1,9 +1,10 @@
 ---
-title: 📖 蔡鑫杰的知识库
+title: NetHub
+description: Docker · Linux · Cloud Native · DevOps
 toc: false
 ---
 
-欢迎来到我的个人知识库！这里记录了我学习和工作中积累的技术笔记。
+欢迎来到 NetHub — Docker · Linux · Cloud Native · DevOps 技术笔记。
 
 ## 📂 分类导航
 

@@ -2,16 +2,16 @@ baseURL: http://8.148.222.151:8000/
 locale: zh-CN
 defaultContentLanguage: zh
 defaultContentLanguageInSubdir: false
-title: 蔡鑫杰的知识库
+title: NetHub
 theme: hextra
 
 params:
-  description: 个人技术知识库 — Docker / Linux / SQL / 网络 / STM32
+  description: Docker · Linux · Cloud Native · DevOps
 
   navbar:
     displayTitle: true
     logo:
-      text: 📖 知识库
+      text: NetHub
 
   footer:
     displayCopyright: false
