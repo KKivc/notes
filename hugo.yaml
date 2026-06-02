@@ -1,0 +1,53 @@
+baseURL: http://8.148.222.151:8000/
+locale: zh-CN
+defaultContentLanguage: zh
+defaultContentLanguageInSubdir: false
+title: 蔡鑫杰的知识库
+theme: hextra
+
+params:
+  description: 个人技术知识库 — Docker / Linux / SQL / 网络 / STM32
+
+  navbar:
+    displayTitle: true
+    logo:
+      text: 📖 知识库
+
+  footer:
+    displayCopyright: false
+    displayPoweredBy: true
+
+  page:
+    width: wide
+
+menu:
+  main:
+    - name: 首页
+      pageRef: /
+      weight: 1
+    - name: Docker
+      pageRef: /docker
+      weight: 10
+    - name: Linux
+      pageRef: /linux
+      weight: 20
+    - name: SQL
+      pageRef: /sql
+      weight: 30
+    - name: STM32
+      pageRef: /stm32
+      weight: 40
+    - name: 网络协议
+      pageRef: /networking
+      weight: 50
+    - name: GitHub
+      url: https://github.com/KKivc/notes
+      weight: 100
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: monokai
+    lineNos: true
