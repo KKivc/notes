@@ -2,6 +2,9 @@
 title: 🚀 项目展示
 cascade:
   type: docs
+toc: false
 ---
 
-🚀 项目展示区域，正在建设中...
+这里是所有开源项目的集合展示。在 `content/projects/` 下新建页面即可自动加入此列表。
+
+{{< project-cards >}}

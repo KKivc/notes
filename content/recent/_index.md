@@ -4,4 +4,4 @@ cascade:
   type: docs
 ---
 
-📝 最近更新区域，正在建设中...
+{{< recent-articles limit=100 >}}

@@ -4,6 +4,9 @@
 {{- $count := $pages | len -}}
 {{- if gt $count 0 -}}
   {{- $limit := 5 -}}
+  {{- with .Get "limit" -}}
+    {{- $limit = int . -}}
+  {{- end -}}
   {{- if lt $count $limit -}}{{- $limit = $count -}}{{- end -}}
   <ul style="list-style: none; padding: 0; margin: 0;">
   {{- range first $limit $pages -}}

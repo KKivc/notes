@@ -1,0 +1,44 @@
+{{- /* Auto-list project pages under /projects/ */ -}}
+{{- $projectPages := where (where .Site.RegularPages ".Section" "eq" "projects") ".Kind" "eq" "page" -}}
+{{- $count := $projectPages | len -}}
+{{- if gt $count 0 -}}
+<style>
+  @media (min-width: 768px) {
+    .project-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 767px) {
+    .project-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+<div class="hextra-cards project-grid hx:mt-4 hx:gap-4 hx:grid not-prose">
+{{- range $projectPages -}}
+  {{- $desc := "" -}}
+  {{- with .Description -}}{{- $desc = . -}}{{- end -}}
+  {{- $date := .Date -}}
+  {{- if $date.IsZero -}}
+    {{- $date = .Lastmod -}}
+  {{- end -}}
+  {{- $dateStr := "" -}}
+  {{- if not $date.IsZero -}}
+    {{- $dateStr = $date.Format "2006-01-02" -}}
+  {{- end -}}
+  <a class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900" href="{{ .RelPermalink }}">
+    <div class="hx:mt-auto">
+      <span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:pt-4 hx:px-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50">{{ .LinkTitle }}</span>
+      <div class="hextra-card-subtitle hx:line-clamp-3 hx:text-sm hx:font-normal hx:text-gray-500 hx:dark:text-gray-400 hx:px-4 hx:mb-4 hx:mt-2">{{ $desc }}</div>
+    </div>
+    {{- if $dateStr -}}
+    <div class="hextra-card-tag" style="padding: 0 1rem 0.75rem;">
+      <span class="hx:inline-flex hx:gap-1 hx:items-center hx:text-xs hx:text-gray-400 hx:dark:text-neutral-500">📅 {{ $dateStr }}</span>
+    </div>
+    {{- end -}}
+  </a>
+{{- end -}}
+</div>
+{{- else -}}
+<div style="text-align: center; padding: 3rem 0; color: #9ca3af;">
+  <div style="font-size: 3rem; margin-bottom: 1rem;">🚧</div>
+  <p style="font-size: 1rem;">暂无项目展示</p>
+  <p style="font-size: 0.85rem; margin-top: 0.5rem;">在 content/projects/ 下新建页面即可自动显示</p>
+</div>
+{{- end -}}
