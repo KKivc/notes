@@ -1,5 +1,6 @@
 ---
 title: 🐳 Docker
+weight: 3
 cascade:
   type: docs
 ---

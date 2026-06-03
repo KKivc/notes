@@ -10,7 +10,8 @@
 {{- /* Build categories: all sections except the site root and special pages */ -}}
 {{- $specialSections := slice "/projects/" "/recent/" -}}
 {{- $categories := slice -}}
-{{- range $page.Site.Sections -}}
+{{- $sortedSections := sort $page.Site.Sections "Weight" "asc" -}}
+{{- range $sortedSections -}}
   {{- $sectionPath := .RelPermalink -}}
   {{- $isSpecial := false -}}
   {{- range $specialSections -}}

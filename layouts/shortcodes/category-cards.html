@@ -1,6 +1,7 @@
 {{- /* Auto-generated category cards - dynamically detects all sections */ -}}
 {{- $specialPaths := slice "/projects/" "/recent/" -}}
 {{- $allSections := where .Site.Sections ".Kind" "eq" "section" -}}
+{{- $allSections = sort $allSections "Weight" "asc" -}}
 
 <style>
   @media (min-width: 768px) {

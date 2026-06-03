@@ -1,5 +1,6 @@
 ---
 title: ⚡ STM32
+weight: 5
 cascade:
   type: docs
 ---

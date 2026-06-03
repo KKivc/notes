@@ -18,6 +18,8 @@ toc: false
 
 <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">🚀 项目展示</h2>
 
+{{< project-cards >}}
+
 <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e5e7eb;">
 
 <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">📝 最近更新</h2>
