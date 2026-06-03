@@ -9,14 +9,19 @@
     {{- $categoryCount = add $categoryCount 1 -}}
   {{- end -}}
 {{- end -}}
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 2rem;">
-  <div style="border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.35rem 1rem; white-space: nowrap;">
-    <span style="font-size: 1rem; font-weight: 600;">📚 {{ $articleCount }} 篇</span>
+<div class="stats-cards">
+  <div class="stats-card">
+    <span class="stats-emoji">📚</span>
+    <span class="stats-number">{{ $articleCount }}</span>
+    <span class="stats-label">篇文章</span>
   </div>
-  <div style="border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.35rem 1rem; white-space: nowrap;">
-    <span style="font-size: 1rem; font-weight: 600;">📂 {{ $categoryCount }} 分类</span>
+  <div class="stats-card">
+    <span class="stats-emoji">📂</span>
+    <span class="stats-number">{{ $categoryCount }}</span>
+    <span class="stats-label">个分类</span>
   </div>
-  <div style="border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.35rem 1rem; white-space: nowrap;">
-    <span style="font-size: 1rem; font-weight: 600;">🕒 持续更新</span>
+  <div class="stats-card">
+    <span class="stats-emoji">∞</span>
+    <span class="stats-label" style="font-size: 1rem; font-weight: 600; line-height: 1.1;">持续更新</span>
   </div>
 </div>

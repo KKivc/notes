@@ -4,24 +4,27 @@ description: Build · Learn · Share
 toc: false
 ---
 
-<p style="text-align: center; margin-bottom: 1.5rem;">Build · Learn · Share</p>
+<div class="nethub-hero">
+  <h1 class="nethub-hero-title">NetHub</h1>
+  <p class="nethub-hero-subtitle">Build · Learn · Share</p>
+</div>
 
 {{< stats-cards >}}
 
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid #e5e7eb;">
+<hr>
 
-<h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">📂 技术分类</h2>
+<h2 class="section-title">📂 技术分类</h2>
 
 {{< category-cards >}}
 
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid #e5e7eb;">
+<hr>
 
-<h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">🚀 项目展示</h2>
+<h2 class="section-title">🚀 项目展示</h2>
 
 {{< project-cards >}}
 
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid #e5e7eb;">
+<hr>
 
-<h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">📝 最近更新</h2>
+<h2 class="section-title">📝 最近更新</h2>
 
 {{< recent-articles >}}
