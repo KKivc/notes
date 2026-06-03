@@ -1,11 +1,7 @@
-{{- /* Auto-generated category cards with dynamic article counts */ -}}
-{{- $categories := slice
-  (dict "link" "/linux" "icon" "🐧" "title" "Linux" "desc" "系统运维")
-  (dict "link" "/networking" "icon" "🌐" "title" "Network" "desc" "BGP / OSPF / IPv6 / MPLS / STP")
-  (dict "link" "/docker" "icon" "🐳" "title" "Docker" "desc" "容器化技术")
-  (dict "link" "/sql" "icon" "🗄️" "title" "MySQL" "desc" "数据库")
-  (dict "link" "/stm32" "icon" "⚡" "title" "STM32" "desc" "嵌入式开发")
--}}
+{{- /* Auto-generated category cards - dynamically detects all sections */ -}}
+{{- $specialPaths := slice "/projects/" "/recent/" -}}
+{{- $allSections := where .Site.Sections ".Kind" "eq" "section" -}}
+
 <style>
   @media (min-width: 768px) {
     .category-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -15,26 +11,31 @@
   }
 </style>
 <div class="hextra-cards category-grid hx:mt-4 hx:gap-4 hx:grid not-prose">
-{{- range $categories -}}
-  {{- $sectionPage := $.Site.GetPage .link -}}
-  {{- $count := 0 -}}
-  {{- if $sectionPage -}}
-    {{- $count = len (where $sectionPage.RegularPages ".Kind" "eq" "page") -}}
+{{- range $allSections -}}
+  {{- $sectionPath := .RelPermalink -}}
+  {{- $isSpecial := false -}}
+  {{- range $specialPaths -}}
+    {{- if eq $sectionPath . -}}{{- $isSpecial = true -}}{{- end -}}
   {{- end -}}
-  {{- $tag := "" -}}
-  {{- if gt $count 0 -}}
-    {{- $tag = printf "📚 %d 篇文章" $count -}}
-  {{- else -}}
-    {{- $tag = "📚 文章整理中" -}}
+  {{- if not $isSpecial -}}
+    {{- $count := len (where .RegularPages ".Kind" "eq" "page") -}}
+    {{- $tag := "" -}}
+    {{- if gt $count 0 -}}
+      {{- $tag = printf "📚 %d 篇文章" $count -}}
+    {{- else -}}
+      {{- $tag = "📚 文章整理中" -}}
+    {{- end -}}
+    {{- $desc := "" -}}
+    {{- with .Description -}}{{- $desc = . -}}{{- end -}}
+    <a class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900" href="{{ .RelPermalink }}">
+      <div class="hx:mt-auto">
+        <span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:pt-4 hx:px-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50">{{ .LinkTitle }}</span>
+        <div class="hextra-card-subtitle hx:line-clamp-3 hx:text-sm hx:font-normal hx:text-gray-500 hx:dark:text-gray-400 hx:px-4 hx:mb-4 hx:mt-2">{{ $desc }}</div>
+      </div>
+      <div class="hextra-badge hextra-card-tag">
+        <div class="hx:inline-flex hx:gap-1 hx:items-center hx:rounded-full hx:px-2.5 hx:leading-6 hx:text-[.65rem] hx:border hx:text-gray-600 hx:bg-gray-100 hx:dark:bg-neutral-800 hx:dark:text-neutral-200 hx:border-gray-200 hx:dark:border-neutral-700">{{ $tag }}</div>
+      </div>
+    </a>
   {{- end -}}
-  <a class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900" href="{{ .link }}">
-    <div class="hx:mt-auto">
-      <span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:pt-4 hx:px-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50">{{ .icon }} {{ .title }}</span>
-      <div class="hextra-card-subtitle hx:line-clamp-3 hx:text-sm hx:font-normal hx:text-gray-500 hx:dark:text-gray-400 hx:px-4 hx:mb-4 hx:mt-2">{{ .desc }}</div>
-    </div>
-    <div class="hextra-badge hextra-card-tag">
-      <div class="hx:inline-flex hx:gap-1 hx:items-center hx:rounded-full hx:px-2.5 hx:leading-6 hx:text-[.65rem] hx:border hx:text-gray-600 hx:bg-gray-100 hx:dark:bg-neutral-800 hx:dark:text-neutral-200 hx:border-gray-200 hx:dark:border-neutral-700">{{ $tag }}</div>
-    </div>
-  </a>
 {{- end -}}
 </div>
