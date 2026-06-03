@@ -1,0 +1,124 @@
+{{- /* Handle both calling conventions: partial "sidebar.html" . and partial "sidebar.html" (dict "context" .) */ -}}
+{{- $page := . -}}
+{{- if reflect.IsMap . -}}
+  {{- $page = .context -}}
+{{- end -}}
+
+{{- /* Define categories */ -}}
+{{- $categories := slice
+  (dict "path" "/linux" "icon" "🐧" "label" "Linux")
+  (dict "path" "/networking" "icon" "🌐" "label" "Network")
+  (dict "path" "/docker" "icon" "🐳" "label" "Docker")
+  (dict "path" "/sql" "icon" "🗄" "label" "MySQL")
+  (dict "path" "/stm32" "icon" "⚡" "label" "STM32")
+-}}
+{{- $pageURL := $page.RelPermalink -}}
+{{- $displayThemeToggle := site.Params.theme.displayToggle | default true -}}
+
+<aside class="hextra-sidebar-container hx:flex hx:flex-col hx:print:hidden hx:md:top-[var(--hextra-navbar-height)] hx:md:shrink-0 hx:md:w-64 hx:md:self-start hx:max-md:[transform:translate3d(0,-100%,0)] hx:md:sticky">
+  <div class="hextra-scrollbar hx:overflow-y-auto hx:overflow-x-hidden hx:p-4 hx:grow hx:md:h-[calc(100vh-var(--hextra-navbar-height)-var(--menu-height))]">
+    <ul class="hx:flex hx:flex-col hx:gap-1">
+      {{- /* 🏠 首页 */ -}}
+      {{- $homeActive := eq (strings.TrimSuffix "/" $pageURL) "/" -}}
+      <li>
+        <div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="{{ if $homeActive }}true{{ else }}false{{ end }}">
+          <a href="/" class="hx:flex hx:items-center hx:gap-2 hx:grow hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:hextra-focus-visible-inset{{ if $homeActive }} hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500{{ else }} hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50{{ end }}">
+            <span class="hx:min-w-0 [word-break:break-word]">🏠 首页</span>
+          </a>
+        </div>
+      </li>
+
+      {{- /* 📚 技术分类 (group header, always open) */ -}}
+      <li class="open">
+        <div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center">
+          <span class="hx:flex hx:grow hx:cursor-default hx:items-center hx:gap-2 hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">📚 技术分类</span>
+          <button type="button" class="hextra-sidebar-collapsible-button hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:hextra-focus-visible-inset" aria-label="切换章节" aria-expanded="true">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg>
+          </button>
+        </div>
+        <div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+          <ul class="hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[''] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800">
+            {{- range $categories -}}
+              {{- $section := $page.Site.GetPage .path -}}
+              {{- $catActive := eq (strings.TrimSuffix "/" $pageURL) (strings.TrimSuffix "/" .path) -}}
+              {{- $hasArticles := false -}}
+              {{- $articles := slice -}}
+              {{- if $section -}}
+                {{- $articles = where $section.RegularPages ".Kind" "eq" "page" -}}
+                {{- $hasArticles = gt (len $articles) 0 -}}
+              {{- end -}}
+              <li class="hx:flex hx:flex-col{{ if or $catActive ($section.IsAncestor $page) }} open{{ end }}">
+                <div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="{{ if $catActive }}true{{ else }}false{{ end }}">
+                  <a href="{{ .path }}/" class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:hextra-focus-visible-inset{{ if $hasArticles }} hx:ltr:pr-8 hx:rtl:pl-8{{ end }}{{ if $catActive }} hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500{{ else }} hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50{{ end }}">
+                    <span class="hx:min-w-0 [word-break:break-word]">{{ .icon }} {{ .label }}</span>
+                  </a>
+                  {{- if $hasArticles -}}
+                    <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="切换章节" aria-expanded="{{ if or $catActive ($section.IsAncestor $page) }}true{{ else }}false{{ end }}">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg>
+                    </button>
+                  {{- end -}}
+                </div>
+                {{- if $hasArticles -}}
+                  <div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+                    <ul class="hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[''] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800">
+                      {{- range $articles -}}
+                        {{- $artActive := eq (strings.TrimSuffix "/" $pageURL) (strings.TrimSuffix "/" .RelPermalink) -}}
+                        <li>
+                          <div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="{{ if $artActive }}true{{ else }}false{{ end }}">
+                            <a href="{{ .RelPermalink }}" class="hx:flex hx:items-center hx:gap-2 hx:grow hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:hextra-focus-visible-inset{{ if $artActive }} hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500{{ else }} hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50{{ end }}">
+                              <span class="hx:min-w-0 [word-break:break-word]">{{ .LinkTitle }}</span>
+                            </a>
+                          </div>
+                        </li>
+                      {{- end -}}
+                    </ul>
+                  </div>
+                {{- end -}}
+              </li>
+            {{- end -}}
+          </ul>
+        </div>
+      </li>
+
+      {{- /* 🚀 项目展示 */ -}}
+      {{- $projectsPage := $page.Site.GetPage "/projects" -}}
+      {{- $hasProjects := false -}}
+      {{- $projectArticles := slice -}}
+      {{- if $projectsPage -}}
+        {{- $projectArticles = where $projectsPage.RegularPages ".Kind" "eq" "page" -}}
+        {{- $hasProjects = gt (len $projectArticles) 0 -}}
+      {{- end -}}
+      {{- $projActive := eq (strings.TrimSuffix "/" $pageURL) "/projects" -}}
+      <li class="hx:flex hx:flex-col{{ if or $projActive ($projectsPage.IsAncestor $page) }} open{{ end }}">
+        <div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="{{ if $projActive }}true{{ else }}false{{ end }}">
+          <a href="/projects/" class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:hextra-focus-visible-inset{{ if $hasProjects }} hx:ltr:pr-8 hx:rtl:pl-8{{ end }}{{ if $projActive }} hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500{{ else }} hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50{{ end }}">
+            <span class="hx:min-w-0 [word-break:break-word]">🚀 项目展示</span>
+          </a>
+        </div>
+      </li>
+
+      {{- /* 📝 最近更新 */ -}}
+      {{- $recentPage := $page.Site.GetPage "/recent" -}}
+      {{- $hasRecent := false -}}
+      {{- $recentArticles := slice -}}
+      {{- if $recentPage -}}
+        {{- $recentArticles = where $recentPage.RegularPages ".Kind" "eq" "page" -}}
+        {{- $hasRecent = gt (len $recentArticles) 0 -}}
+      {{- end -}}
+      {{- $recentActive := eq (strings.TrimSuffix "/" $pageURL) "/recent" -}}
+      <li class="hx:flex hx:flex-col{{ if or $recentActive ($recentPage.IsAncestor $page) }} open{{ end }}">
+        <div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="{{ if $recentActive }}true{{ else }}false{{ end }}">
+          <a href="/recent/" class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:hextra-focus-visible-inset{{ if $hasRecent }} hx:ltr:pr-8 hx:rtl:pl-8{{ end }}{{ if $recentActive }} hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500{{ else }} hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50{{ end }}">
+            <span class="hx:min-w-0 [word-break:break-word]">📝 最近更新</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  {{- if $displayThemeToggle -}}
+    <div class="hx:sticky hx:bottom-0 hx:max-h-(--menu-height) hx:bg-white hx:dark:bg-dark hx:mx-4 hx:py-4 hx:shadow-[0_-12px_16px_#fff] hx:flex hx:items-center hx:gap-2 hx:border-gray-200 hx:dark:border-neutral-800 hx:dark:shadow-[0_-12px_16px_#111] hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:shadow-none hx:border-t" data-toggle-animation="show">
+      <div class="hx:flex hx:grow hx:flex-col">{{ partial "theme-toggle" }}</div>
+    </div>
+  {{- end -}}
+</aside>
