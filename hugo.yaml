@@ -41,6 +41,9 @@ menu:
     - name: STM32
       pageRef: /stm32
       weight: 50
+    - name: Git
+      pageRef: /git
+      weight: 55
     - name: GitHub
       url: https://github.com/KKivc/notes
       weight: 100
