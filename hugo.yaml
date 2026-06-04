@@ -5,6 +5,8 @@ defaultContentLanguageInSubdir: false
 title: NetHub
 theme: hextra
 
+enableGitInfo: true
+
 params:
   description: Docker · Linux · Cloud Native · DevOps
 
