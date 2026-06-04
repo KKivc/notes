@@ -53,5 +53,5 @@ markup:
     renderer:
       unsafe: true
   highlight:
-    style: monokai
+    style: github
     lineNos: true
