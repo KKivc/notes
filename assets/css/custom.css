@@ -266,12 +266,22 @@ html.dark .section-title {
   border-left-color: hsl(204, 100%, 60%);
 }
 
-/* ── 8. 文章页内容宽度控制 ── */
+/* ── 8. 文章页内容宽度控制 + 标题居中 ── */
 /* 非首页（没有 hero 区的内容区）收窄宽度提升阅读舒适度 */
 .content:not(:has(.nethub-hero)) {
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* 文章页标题居中 */
+.content:not(:has(.nethub-hero)) > div:first-child > h1:first-child {
+  text-align: center !important;
+}
+
+/* 隐藏面包屑导航 — main#content 下面带导航链接的行 */
+main#content > [class*="mt-1"][class*="flex"] {
+  display: none !important;
 }
 
 /* ── 9. 页脚暗色同步 ── */
@@ -312,7 +322,7 @@ html.dark .hextra-sidebar-container {
 /* 亮色：hugo style:github 默认效果，只需微调背景和圆角 */
 .highlight {
   border-radius: 8px;
-  overflow: hidden;
+  overflow-x: auto;
 }
 .highlight pre {
   border-radius: 8px;
@@ -329,7 +339,7 @@ html.dark .hextra-sidebar-container {
 /* 暗色 — 强制覆盖所有内联样式到 GitHub Dark 配色 */
 html.dark .highlight {
   border-radius: 8px;
-  overflow: hidden;
+  overflow-x: auto;
 }
 html.dark .highlight pre,
 html.dark .highlight div[style*="background"],
@@ -460,6 +470,59 @@ html.dark .highlight .err {
 html.dark :not(pre) > code {
   background-color: rgba(110, 118, 129, 0.4) !important;
   color: #e6edf3 !important;
+}
+
+/* ── 13c. 文章卡片样式 ── */
+.section-articles {
+  margin-top: 2rem;
+}
+.article-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+.article-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e8e4de;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  text-decoration: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-color: #c7d2fe;
+}
+.article-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  font-family: 'Noto Serif SC', serif;
+}
+.article-card-desc {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+html.dark .article-card {
+  background: rgba(22, 22, 30, 0.75);
+  border-color: #1e1e2a;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+html.dark .article-card:hover {
+  border-color: #4338ca;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+html.dark .article-card-title {
+  color: #e2e8f0;
+}
+html.dark .article-card-desc {
+  color: #9ca3af;
 }
 
 /* ── 13b. 响应式适配 ── */

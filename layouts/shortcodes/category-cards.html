@@ -19,7 +19,7 @@
     {{- if eq $sectionPath . -}}{{- $isSpecial = true -}}{{- end -}}
   {{- end -}}
   {{- if not $isSpecial -}}
-    {{- $count := len (where .RegularPages ".Kind" "eq" "page") -}}
+    {{- $count := len .RegularPagesRecursive -}}
     {{- $tag := "" -}}
     {{- if gt $count 0 -}}
       {{- $tag = printf "📚 %d 篇文章" $count -}}

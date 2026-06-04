@@ -1,0 +1,20 @@
+{{- with .Page -}}
+{{- $pages := sort .RegularPages ".Title" "asc" -}}
+{{- if $pages -}}
+<div class="section-articles">
+  <div class="section-title">📄 文章列表</div>
+  <div class="article-grid">
+    {{- range $pages -}}
+      <a href="{{ .RelPermalink }}" class="article-card">
+        <div class="article-card-title">{{ .Title }}</div>
+        {{- with .Description -}}
+          <div class="article-card-desc">{{ . }}</div>
+        {{- end -}}
+      </a>
+    {{- end -}}
+  </div>
+</div>
+{{- else -}}
+<p>暂无文章</p>
+{{- end -}}
+{{- end -}}
