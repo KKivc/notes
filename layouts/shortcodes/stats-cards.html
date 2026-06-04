@@ -1,0 +1,27 @@
+{{- /* Auto-count articles and categories */ -}}
+{{- $articleCount := 0 -}}
+{{- $categoryCount := 0 -}}
+{{- range .Site.Pages -}}
+  {{- if .IsPage -}}
+    {{- $articleCount = add $articleCount 1 -}}
+  {{- end -}}
+  {{- if and (eq .Kind "section") (ne .Title "") -}}
+    {{- $categoryCount = add $categoryCount 1 -}}
+  {{- end -}}
+{{- end -}}
+<div class="stats-cards">
+  <div class="stats-card">
+    <span class="stats-emoji">📚</span>
+    <span class="stats-number">{{ $articleCount }}</span>
+    <span class="stats-label">篇文章</span>
+  </div>
+  <div class="stats-card">
+    <span class="stats-emoji">📂</span>
+    <span class="stats-number">{{ $categoryCount }}</span>
+    <span class="stats-label">个分类</span>
+  </div>
+  <div class="stats-card">
+    <span class="stats-emoji">∞</span>
+    <span class="stats-label" style="font-size: 1rem; font-weight: 600; line-height: 1.1;">持续更新</span>
+  </div>
+</div>

@@ -1,0 +1,346 @@
+/* ═══════════════════════════════════════════════
+   NetHub 站点自定义样式
+   仅覆盖 CSS 变量和样式，不动任何主题/模板文件
+   修改后 Hugo server 自动热更新
+   ═══════════════════════════════════════════════ */
+
+/* ── 1. 字体配置 ── */
+body {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
+    system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .hextra-card-icon {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'STSong',
+    'SimSun', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+}
+/* 代码块等宽字体 */
+code, pre, kbd, samp {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+}
+
+/* 分类卡片的 emoji 用系统无衬线字体 */
+.hextra-card-icon {
+  font-family: 'Noto Sans SC', system-ui, sans-serif !important;
+}
+
+/* ── 2. 背景 ── */
+body {
+  background-color: #faf8f5;
+}
+html.dark body {
+  background-color: #0f0f14;
+}
+
+.hextra-nav-container-blur {
+  background-color: rgba(250, 248, 245, 0.85) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+html.dark .hextra-nav-container-blur {
+  background-color: rgba(15, 15, 20, 0.85) !important;
+}
+
+/* ── 3. 内容区 — 毛玻璃卡片背景 ── */
+/* 首页 + 文章页统一效果 */
+main#content {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem 2rem !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+html.dark main#content {
+  background: rgba(22, 22, 30, 0.75) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ── 4. Hero 标题 ── */
+/* 隐藏 Hextra 默认渲染的 h1（在 .content 外层） */
+body:has(.nethub-hero) main#content > h1:first-of-type {
+  display: none !important;
+}
+
+.nethub-hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景装饰 — 柔和光晕 */
+.nethub-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.05) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+html.dark .nethub-hero::before {
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.04) 0%, rgba(139, 92, 246, 0.02) 50%, transparent 75%);
+}
+
+.nethub-hero-title {
+  position: relative;
+  z-index: 1;
+  font-size: 4rem !important;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #2563eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800 !important;
+}
+
+.nethub-hero-subtitle {
+  position: relative;
+  z-index: 1;
+  font-size: 1.15rem;
+  color: #6b7280;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+html.dark .nethub-hero-subtitle {
+  color: #9ca3af;
+}
+
+/* ── 5. 统计卡片 — emoji 大图标布局 ── */
+.stats-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0 2.5rem;
+}
+
+.stats-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  color: #fff;
+  border-radius: 1.25rem;
+  padding: 1.25rem 2rem;
+  min-width: 8rem;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stats-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+}
+html.dark .stats-card {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+.stats-emoji {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.15rem;
+}
+.stats-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.stats-label {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  letter-spacing: 0.04em;
+}
+
+/* ── 6. 分类卡片 — 顶部渐变条 + hover 上浮 ── */
+.hextra-card {
+  position: relative;
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  border: 1px solid #e8e4de !important;
+}
+.hextra-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04) !important;
+  border-color: #c7d2fe !important;
+}
+.hextra-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6);
+  z-index: 1;
+}
+html.dark .hextra-card {
+  border-color: #1e1e2a !important;
+  background: #16161e !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+}
+html.dark .hextra-card:hover {
+  border-color: #4338ca !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ── 7. 最近更新 — 卡片包裹 + 日期标签 ── */
+.content ul[style*="list-style: none"] {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0.75rem;
+  padding: 0.25rem 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e8e4de;
+  overflow: hidden;
+}
+html.dark .content ul[style*="list-style: none"] {
+  background: rgba(22, 22, 30, 0.75);
+  border-color: #1e1e2a;
+}
+
+.content ul[style*="list-style: none"] li {
+  padding: 0.75rem 1rem !important;
+  border-bottom: 1px solid #f0ede8 !important;
+  transition: background-color 0.15s ease;
+}
+html.dark .content ul[style*="list-style: none"] li {
+  border-bottom-color: #1e1e2a !important;
+}
+.content ul[style*="list-style: none"] li:last-child {
+  border-bottom: none !important;
+}
+.content ul[style*="list-style: none"] li:hover {
+  background-color: rgba(59, 130, 246, 0.04);
+}
+html.dark .content ul[style*="list-style: none"] li:hover {
+  background-color: rgba(59, 130, 246, 0.06);
+}
+
+.content ul[style*="list-style: none"] li a + span,
+.content ul[style*="list-style: none"] li span[style*="color: #9ca3af"] {
+  font-size: 0.7rem !important;
+  color: #6b7280 !important;
+  background: #f3f0ea;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+html.dark .content ul[style*="list-style: none"] li a + span,
+html.dark .content ul[style*="list-style: none"] li span[style*="color: #9ca3af"] {
+  background: #1e1e2a;
+  color: #9ca3af !important;
+}
+
+/* 分割线 */
+hr, .content hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, #d1d0cb, transparent) !important;
+  margin: 2rem 0 !important;
+}
+html.dark hr, html.dark .content hr {
+  background: linear-gradient(90deg, transparent, #2a2a3a, transparent) !important;
+}
+
+/* 区块标题 */
+.section-title {
+  font-size: 1.2rem;
+  color: #1e293b;
+  border-left: 3px solid hsl(212, 100%, 50%);
+  padding-left: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+html.dark .section-title {
+  color: #e2e8f0;
+  border-left-color: hsl(204, 100%, 60%);
+}
+
+/* ── 8. 文章页内容宽度控制 ── */
+/* 非首页（没有 hero 区的内容区）收窄宽度提升阅读舒适度 */
+.content:not(:has(.nethub-hero)) {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── 9. 页脚暗色同步 ── */
+html.dark footer.hextra-footer {
+  background-color: #0f0f14 !important;
+}
+
+/* ── 11. 主题切换区域暗色同步 ── */
+html.dark .hextra-sidebar-container > div:last-child {
+  background-color: #0f0f14 !important;
+  box-shadow: 0 -12px 16px #0f0f14 !important;
+  border-top-color: #1e1e2a !important;
+}
+
+html.dark .hextra-theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.dark .hextra-theme-toggle-options {
+  background-color: #16161e !important;
+  border-color: #2a2a3a !important;
+}
+html.dark .hextra-theme-toggle-options button:hover {
+  background-color: #2a2a3a !important;
+}
+
+html.dark .hextra-sidebar-container {
+  background-color: #0f0f14;
+}
+
+/* ── 12. 侧边栏字体 ── */
+.hextra-sidebar-container {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
+    system-ui, -apple-system, sans-serif;
+}
+
+/* ── 13. 响应式适配 ── */
+
+/* 笔记本 (< 1024px) */
+@media (max-width: 1024px) {
+  /* 内容区内边距 */
+  main#content {
+    padding: 1rem 1rem !important;
+    border-radius: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  /* 区块标题 */
+  .section-title {
+    font-size: 1rem;
+  }
+
+  /* 分割线间距 */
+  hr, .content hr {
+    margin: 1.25rem 0 !important;
+  }
+}
+
+/* 小平板 (< 768px) */
+@media (max-width: 768px) {
+  .nethub-hero-title {
+    font-size: 3rem !important;
+  }
+  .stats-card {
+    min-width: 6rem;
+    padding: 1rem 1.25rem;
+  }
+  /* 确保分类卡片单列 */
+  .category-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

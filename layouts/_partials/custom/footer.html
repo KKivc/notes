@@ -1,0 +1,33 @@
+<div style="text-align: center; padding: 3rem 1rem 1rem;">
+  <hr style="margin: 0 0 2rem; border: none; border-top: 1px solid #e5e7eb;">
+
+  <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem;">NetHub</div>
+  <div style="font-size: 0.9rem; color: #6b7280; margin-bottom: 0.5rem;">Build · Learn · Share</div>
+  <div style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 0.75rem;">
+    Linux | Docker | STM32 | Network
+  </div>
+  <div id="site-uptime" style="font-size: 0.85rem; color: #6b7280; margin-bottom: 1.5rem;"></div>
+
+  <hr style="margin: 0 0 1.5rem; border: none; border-top: 1px solid #e5e7eb;">
+
+  <div style="font-size: 0.8rem; color: #9ca3af;">© 2026 NetHub</div>
+</div>
+
+<script>
+(function() {
+  var siteStart = new Date('2026-06-03T00:14:45+08:00');
+  function updateUptime() {
+    var now = new Date();
+    var diff = now - siteStart;
+    if (diff < 0) { document.getElementById('site-uptime').textContent = '🚀 即将上线'; return; }
+    var totalSeconds = Math.floor(diff / 1000);
+    var days = Math.floor(totalSeconds / (24 * 3600));
+    var hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+    var minutes = Math.floor((totalSeconds % 3600) / 60);
+    var seconds = totalSeconds % 60;
+    document.getElementById('site-uptime').textContent = '「本站运行了 ' + days + ' 天 ' + hours + ' 小时 ' + minutes + ' 分 ' + seconds + ' 秒」';
+  }
+  updateUptime();
+  setInterval(updateUptime, 1000);
+})();
+</script>
