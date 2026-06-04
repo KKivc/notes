@@ -1,6 +1,7 @@
 ---
 title: compose
 space: docker
+# updated: 2026-06-05 test enableGitInfo
 ---
 
 # Basic
