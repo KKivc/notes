@@ -308,65 +308,161 @@ html.dark .hextra-sidebar-container {
     system-ui, -apple-system, sans-serif;
 }
 
-/* ── 13. GitHub 风格代码块（替代 Hextra 默认 Dracula 主题） ── */
-
-/* 亮色模式 — GitHub light */
-pre {
-  max-width: 100% !important;
-  overflow-x: auto !important;
-  background-color: #f6f8fa !important;
-  color: #1f2328 !important;
+/* ── 13. 代码块 — Chrome 高亮适配亮色/暗色 ── */
+/* 亮色：hugo style:github 默认效果，只需微调背景和圆角 */
+.highlight {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.highlight pre {
+  border-radius: 8px;
   border: 1px solid #d0d7de !important;
-  border-radius: 8px !important;
-}
-/* Hextra 的代码块外壳也有 table 布局，容器也需要约束 */
-.hextra-code-block {
-  overflow-x: auto !important;
-  max-width: 100% !important;
-}
-/* 恢复 pre 内 code 的默认样式（不让 code 自己的样式覆盖） */
-pre code {
-  background: transparent !important;
-  color: inherit !important;
-  border: none !important;
-  padding: 0 !important;
+  padding: 1rem !important;
 }
 
-/* 代码块内的语法 token — 覆盖 Hextra 的暗色 token 颜色 */
-pre code span:not([style*="color"]) {
-  color: #1f2328 !important;
+/* 行号列背景色同步 */
+.highlight table td:first-child pre {
+  background-color: #f6f8fa !important;
+  border-right: 1px solid #d0d7de;
 }
 
-/* 行内代码 — 亮色 */
-:not(pre) > code {
-  background-color: rgba(175, 184, 193, 0.2) !important;
-  color: inherit !important;
-  border: none !important;
-  border-radius: 6px !important;
-  padding: 0.2em 0.4em !important;
-  font-size: 0.875em !important;
+/* 暗色 — 强制覆盖所有内联样式到 GitHub Dark 配色 */
+html.dark .highlight {
+  border-radius: 8px;
+  overflow: hidden;
 }
-
-/* 暗色模式 — GitHub dark */
-html.dark pre {
+html.dark .highlight pre,
+html.dark .highlight div[style*="background"],
+html.dark .highlight table td pre {
   background-color: #151b23 !important;
-  color: #e6edf3 !important;
+}
+html.dark .highlight pre {
   border-color: #30363d !important;
-}
-html.dark pre code {
-  color: #e6edf3 !important;
-}
-html.dark pre code span:not([style*="color"]) {
   color: #e6edf3 !important;
 }
 
-/* 行内代码 — 暗色 */
+/* 行号列暗色 */
+html.dark .highlight table td:first-child pre {
+  background-color: #0d1117 !important;
+  border-right-color: #30363d !important;
+}
+html.dark .highlight table td:first-child pre code span {
+  color: #636e7b !important;
+}
+
+/* 代码内容文字和 span 暗色 */
+html.dark .highlight pre code {
+  color: #e6edf3 !important;
+  background: transparent !important;
+}
+
+/* ── 覆盖各个语法 token 在暗色下的颜色 ── */
+/* 注释 */
+html.dark .highlight .c,
+html.dark .highlight .c1,
+html.dark .highlight .ch,
+html.dark .highlight .cm,
+html.dark .highlight .cp,
+html.dark .highlight .cpf,
+html.dark .highlight .cs {
+  color: #8b949e !important;
+  font-style: italic !important;
+}
+/* 关键字 */
+html.dark .highlight .k,
+html.dark .highlight .kc,
+html.dark .highlight .kd,
+html.dark .highlight .kn,
+html.dark .highlight .kp,
+html.dark .highlight .kr,
+html.dark .highlight .kt {
+  color: #ff7b72 !important;
+}
+/* 字符串 */
+html.dark .highlight .s,
+html.dark .highlight .s1,
+html.dark .highlight .s2,
+html.dark .highlight .sb,
+html.dark .highlight .sc,
+html.dark .highlight .dl,
+html.dark .highlight .sd,
+html.dark .highlight .se,
+html.dark .highlight .sh,
+html.dark .highlight .si,
+html.dark .highlight .sr,
+html.dark .highlight .ss,
+html.dark .highlight .sx {
+  color: #a5d6ff !important;
+}
+/* 数字 */
+html.dark .highlight .mi,
+html.dark .highlight .mf,
+html.dark .highlight .mh,
+html.dark .highlight .mo,
+html.dark .highlight .il,
+html.dark .highlight .mb,
+html.dark .highlight .mx {
+  color: #79c0ff !important;
+}
+/* 函数名 */
+html.dark .highlight .nf,
+html.dark .highlight .nx {
+  color: #d2a8ff !important;
+}
+/* 类名 */
+html.dark .highlight .nc {
+  color: #ffa657 !important;
+}
+/* 操作符 */
+html.dark .highlight .o,
+html.dark .highlight .ow {
+  color: #ff7b72 !important;
+}
+/* 属性名 */
+html.dark .highlight .na {
+  color: #79c0ff !important;
+}
+/* 内置函数/变量 */
+html.dark .highlight .nb,
+html.dark .highlight .bp {
+  color: #ffa657 !important;
+}
+/* 标签 */
+html.dark .highlight .nt {
+  color: #7ee787 !important;
+}
+/* 变量 */
+html.dark .highlight .nv {
+  color: #ffa657 !important;
+}
+/* 命名空间 */
+html.dark .highlight .nn {
+  color: #e6edf3 !important;
+}
+/* 泛型 */
+html.dark .highlight .ge {
+  font-style: italic !important;
+}
+/* 加粗 */
+html.dark .highlight .gs {
+  font-weight: bold !important;
+}
+/* 强调 */
+html.dark .highlight .gh {
+  color: #8b949e !important;
+}
+/* 错误 */
+html.dark .highlight .err {
+  color: #f85149 !important;
+}
+
+/* 行内代码暗色 */
 html.dark :not(pre) > code {
   background-color: rgba(110, 118, 129, 0.4) !important;
   color: #e6edf3 !important;
 }
 
-/* ── 14. 响应式适配 ── */
+/* ── 13b. 响应式适配 ── */
 
 /* 笔记本 (< 1024px) */
 @media (max-width: 1024px) {
