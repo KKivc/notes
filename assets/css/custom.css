@@ -308,7 +308,65 @@ html.dark .hextra-sidebar-container {
     system-ui, -apple-system, sans-serif;
 }
 
-/* ── 13. 响应式适配 ── */
+/* ── 13. GitHub 风格代码块（替代 Hextra 默认 Dracula 主题） ── */
+
+/* 亮色模式 — GitHub light */
+pre {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  background-color: #f6f8fa !important;
+  color: #1f2328 !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 8px !important;
+}
+/* Hextra 的代码块外壳也有 table 布局，容器也需要约束 */
+.hextra-code-block {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+}
+/* 恢复 pre 内 code 的默认样式（不让 code 自己的样式覆盖） */
+pre code {
+  background: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* 代码块内的语法 token — 覆盖 Hextra 的暗色 token 颜色 */
+pre code span:not([style*="color"]) {
+  color: #1f2328 !important;
+}
+
+/* 行内代码 — 亮色 */
+:not(pre) > code {
+  background-color: rgba(175, 184, 193, 0.2) !important;
+  color: inherit !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 0.2em 0.4em !important;
+  font-size: 0.875em !important;
+}
+
+/* 暗色模式 — GitHub dark */
+html.dark pre {
+  background-color: #151b23 !important;
+  color: #e6edf3 !important;
+  border-color: #30363d !important;
+}
+html.dark pre code {
+  color: #e6edf3 !important;
+}
+html.dark pre code span:not([style*="color"]) {
+  color: #e6edf3 !important;
+}
+
+/* 行内代码 — 暗色 */
+html.dark :not(pre) > code {
+  background-color: rgba(110, 118, 129, 0.4) !important;
+  color: #e6edf3 !important;
+}
+
+/* ── 14. 响应式适配 ── */
 
 /* 笔记本 (< 1024px) */
 @media (max-width: 1024px) {
