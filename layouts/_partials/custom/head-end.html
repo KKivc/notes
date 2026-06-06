@@ -3,3 +3,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+<!-- 支持 ==高亮== 语法 -->
+<style>
+mark { background-color: #fef08a; color: #1a1a2e; padding: 0.1em 0.3em; border-radius: 3px; }
+.dark mark { background-color: #a16207; color: #fef9c3; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.content, article, main').forEach(function(el) {
+    walkTextNodes(el);
+  });
+  function walkTextNodes(node) {
+    if (node.nodeType === 3) {
+      var text = node.textContent;
+      if (text.includes('==')) {
+        var parent = node.parentNode;
+        if (parent && ['CODE', 'PRE', 'SCRIPT', 'STYLE'].indexOf(parent.tagName) === -1) {
+          var html = text.replace(/==(.+?)==/g, '<mark>$1</mark>');
+          if (html !== text) {
+            var span = document.createElement('span');
+            span.innerHTML = html;
+            parent.replaceChild(span, node);
+          }
+        }
+      }
+    } else if (node.nodeType === 1 && ['CODE', 'PRE', 'SCRIPT', 'STYLE'].indexOf(node.tagName) === -1) {
+      Array.from(node.childNodes).forEach(walkTextNodes);
+    }
+  }
+});
+</script>

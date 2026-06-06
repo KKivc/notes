@@ -6,6 +6,7 @@ title: NetHub
 theme: hextra
 
 enableGitInfo: true
+pluralizeListTitles: false
 
 params:
   description: Docker · Linux · Cloud Native · DevOps
@@ -56,4 +57,4 @@ markup:
       unsafe: true
   highlight:
     style: github
-    lineNos: true
+    lineNos: false
