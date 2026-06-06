@@ -55,6 +55,10 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    extensions:
+      extras:
+        mark:
+          enable: true
   highlight:
     style: github
     lineNos: false
