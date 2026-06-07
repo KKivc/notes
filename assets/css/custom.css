@@ -478,6 +478,18 @@ html.dark .highlight .err {
   color: #f85149 !important;
 }
 
+/* Chroma 错误 token 红底中和 — SQL 的 # 注释被误判为 err token */
+.highlight span[style*="background-color:#82071e"],
+.highlight span[style*="background-color: #82071e"] {
+  background-color: transparent !important;
+  color: #656d76 !important;
+}
+html.dark .highlight span[style*="background-color:#82071e"],
+html.dark .highlight span[style*="background-color: #82071e"] {
+  background-color: transparent !important;
+  color: #8b949e !important;
+}
+
 /* 行内代码暗色 */
 html.dark :not(pre) > code {
   background-color: rgba(110, 118, 129, 0.4) !important;
