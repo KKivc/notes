@@ -332,6 +332,11 @@ html.dark .hextra-sidebar-container {
   padding: 1rem !important;
 }
 
+/* 覆盖 Chroma 注释色（内联 #57606a）— 提高中文注释可读性 */
+.highlight span[style*="color:#57606a"] {
+  color: #656d76 !important;
+}
+
 /* 行号列背景色同步 */
 .highlight table td:first-child pre {
   background-color: #f6f8fa !important;
@@ -360,6 +365,11 @@ html.dark .highlight table td:first-child pre {
 }
 html.dark .highlight table td:first-child pre code span {
   color: #636e7b !important;
+}
+
+/* 覆盖 Chroma 注释色（内联 #57606a）— 暗色下变为亮灰 */
+html.dark .highlight span[style*="color:#57606a"] {
+  color: #8b949e !important;
 }
 
 /* 代码内容文字和 span 暗色 */
