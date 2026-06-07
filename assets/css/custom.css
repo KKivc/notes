@@ -16,8 +16,10 @@ h1, h2, h3, h4, h5, h6, .hextra-card-icon {
   font-weight: 700;
 }
 /* 代码块等宽字体 */
+/* 代码块等宽字体 — JetBrains Mono 主打，Noto Sans SC 处理中文注释 */
 code, pre, kbd, samp {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC',
+    'Fira Code', 'Consolas', 'Courier New', monospace;
 }
 
 /* 分类卡片的 emoji 用系统无衬线字体 */
