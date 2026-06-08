@@ -7,10 +7,7 @@
 mark { background-color: #fef08a; color: #1a1a2e; padding: 0.1em 0.3em; border-radius: 3px; }
 .dark mark { background-color: #a16207; color: #fef9c3; }
 </style>
-<!-- 入场动画：页面加载后 stagger 上浮 -->
+<!-- 入场滚动动画：IntersectionObserver，零依赖 -->
 <script>
-(function(){if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-addEventListener('DOMContentLoaded',function(){
-var el=document.querySelectorAll('.hextra-card,.stats-card,.section-title,.content ul[style*="list-style: none"],.nethub-hero');
-el.forEach(function(e,i){setTimeout(function(){e.classList.add('av')},i*60)})})})();
+(function(){if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('av');o.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.nethub-hero,.stats-card,.hextra-card,.section-title,.content ul[style*="list-style: none"]').forEach(function(el){o.observe(el)})})();
 </script>
