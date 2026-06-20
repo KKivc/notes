@@ -24,6 +24,9 @@ params:
   page:
     width: wide
 
+  mermaid:
+    js: js/mermaid.min.js
+
 menu:
   main:
     - name: 首页
