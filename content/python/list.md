@@ -1,4 +1,4 @@
 ---
-title：list
+title: list
 ---
 

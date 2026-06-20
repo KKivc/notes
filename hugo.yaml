@@ -1,4 +1,4 @@
-baseURL: http://8.148.222.151:8000/
+baseURL: https://nethub.20050305.xyz
 locale: zh-CN
 defaultContentLanguage: zh
 defaultContentLanguageInSubdir: false
